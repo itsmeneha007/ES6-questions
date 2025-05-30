@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+let seconds = parseInt(prompt("Enter number of seconds to count down:"), 10);
+
+if (isNaN(seconds) || seconds <= 0) {
+  console.log("Please enter a valid number greater than 0.");
+} else {
+  console.log(`Countdown started from ${seconds} seconds...`);
+
+  let intervalId = setInterval(() => {
+    console.log(`Remaining: ${seconds} second(s)`);
+    seconds--;
+
+    if (seconds < 0) {
+      clearInterval(intervalId);
+      console.log("Countdown Complete!");
+    }
+  }, 1000);
+
+  setTimeout(() => {
+    document.addEventListener("keydown", function stopHandler(e) {
+      if (e.key.toLowerCase() === "s") {
+        clearInterval(intervalId);
+        console.log("Countdown stopped by user.");
+        document.removeEventListener("keydown", stopHandler); 
+      }
+    });
+  }, 500); 
+}
+
+</script>
