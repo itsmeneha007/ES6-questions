@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+    function countCategories(categories){
+        const countMap = categories.reduce((acc, category)=>{
+            acc[category] = (acc[category] || 0) + 1;
+            return acc
+        },{})
+        const sortedCategories = Object.entries(countMap)
+        .sort((a, b)=> b[1]-a[1])
+        .map(entry => entry[0])
+
+        return {
+            counts : countMap,
+            sortedCategories
+        }
+    }
+
+    const input = ["electronics", "clothing", "electronics", "toys", "clothing", "toys","toys"]
+    const result = countCategories(input);
+
+    console.log(result.counts);
+    console.log(result.sortedCategories)
+</script>
